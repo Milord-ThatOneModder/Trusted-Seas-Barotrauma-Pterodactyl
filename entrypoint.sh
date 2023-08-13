@@ -109,5 +109,8 @@ echo -e ":/home/container$ ${MODIFIED_STARTUP}"
 # ModManager adding
 ./mod_manager.sh
 
+touch custom_script.sh
+chmod +x custom_script.sh
+
 # Run the Server
 eval ${MODIFIED_STARTUP}
