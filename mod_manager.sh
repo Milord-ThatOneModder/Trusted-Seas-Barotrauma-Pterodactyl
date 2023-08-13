@@ -6,6 +6,7 @@ unzip -qo ModManager.zip
 python3 -m pip install requests
 
 
+
 modmanager_install_script="#!/bin/bash
 
 echo \"UPDATING MOD MANAGER\"
