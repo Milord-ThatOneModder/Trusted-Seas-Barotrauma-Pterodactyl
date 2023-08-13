@@ -115,7 +115,7 @@ unzip -qo ModManager.zip
 echo -e \"\\n\\n\"
 echo \"RUNNING MOD MANAGER\"
 python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\""
-echo "$modmanager_install_script" >> mod_manager.sh
+echo "$modmanager_install_script" > mod_manager.sh
 chmod +x mod_manager.sh
 
 touch custom_script.sh
