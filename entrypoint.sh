@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #
+# bruh and lmao:
 # Copyright (c) 2021 Matthew Penner
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -105,8 +106,8 @@ echo "$pterodactylfix" >> Lua/ModLoader.lua
 MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo -e ":/home/container$ ${MODIFIED_STARTUP}"
 
-touch custom_script.sh
-chmod +x custom_script.sh
+# ModManager adding
+./mod_manager.sh
 
 # Run the Server
 eval ${MODIFIED_STARTUP}

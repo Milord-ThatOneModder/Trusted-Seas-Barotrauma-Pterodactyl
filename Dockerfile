@@ -1,9 +1,9 @@
 FROM        --platform=linux/amd64 ubuntu:22.04
 
-LABEL       author="Matthew Penner" maintainer="matthew@pterodactyl.io"
+LABEL       author="Trusted Seas Community, Noble Milord and Evil Factory" maintainer="https://github.com/Milord-ThatOneModder"
 
-LABEL       org.opencontainers.image.source="https://github.com/pterodactyl/yolks"
-LABEL       org.opencontainers.image.licenses=MIT
+LABEL       org.opencontainers.image.source="https://github.com/Milord-ThatOneModder/Trusted-Seas-Barotrauma-Pterodactyl"
+LABEL       org.opencontainers.image.licenses=LGPL
 
 ENV         DEBIAN_FRONTEND=noninteractive
 
