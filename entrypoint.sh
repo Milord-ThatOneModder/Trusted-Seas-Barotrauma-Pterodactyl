@@ -80,6 +80,8 @@ else
     echo -e "Not updating game server as auto update was set to 0. Starting Server"
 fi
 
+# Licenced thing by mathew end here
+
 rm luacsforbarotrauma_patch_linux_server.zip
 wget https://github.com/evilfactory/LuaCsForBarotrauma/releases/download/latest/luacsforbarotrauma_patch_linux_server.zip -O luacsforbarotrauma_patch_linux_server.zip
 unzip -o luacsforbarotrauma_patch_linux_server.zip
@@ -106,16 +108,14 @@ echo "$pterodactylfix" >> Lua/ModLoader.lua
 MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo -e ":/home/container$ ${MODIFIED_STARTUP}"
 
-# ModManager adding
-modmanager_install_script="#!/bin/bash
-
+# ModManager setup
 echo \"UPDATING MOD MANAGER\"
 wget -N https://github.com/Milord-ThatOneModder/Barotrauma-ModManager/releases/latest/download/ModManager.zip
 unzip -qo ModManager.zip
-echo -e \"\\n\\n\"
-echo \"RUNNING MOD MANAGER\"
-python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\""
-echo "$modmanager_install_script" > mod_manager.sh
+
+modmanager_run_script="RUNNING MOD MANAGER\"
+python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\" --backup \"12\" \"Daedalic Entertainment GmbH/Barotrauma/Multiplayer\" -o \"LocalMods\""
+echo "$modmanager_run_script" > mod_manager.sh
 chmod +x mod_manager.sh
 
 touch custom_script.sh
