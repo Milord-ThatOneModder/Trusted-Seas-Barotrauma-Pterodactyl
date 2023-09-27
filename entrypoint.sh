@@ -114,8 +114,10 @@ wget -N https://github.com/Milord-ThatOneModder/Barotrauma-ModManager/releases/l
 unzip -qo ModManager.zip
 
 modmanager_run_script="#!/bin/bash
-RUNNING MOD MANAGER
-python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\" --backup \"12\" \"Daedalic Entertainment GmbH/Barotrauma/Multiplayer\" -o \"LocalMods\""
+echo \"RUNNING MOD MANAGER\"
+if [ -f \"config_player.xml\" ]; then
+    python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\" --backup \"12\" \"Daedalic Entertainment GmbH/Barotrauma/Multiplayer\" -o \"LocalMods\"
+fi"
 echo "$modmanager_run_script" > mod_manager.sh
 chmod +x mod_manager.sh
 
