@@ -190,7 +190,7 @@ fi
 ## if SERVER_KARMA is not set
 if [ -z ${SERVER_KARMA} ]; then
     if [ -f "serversettings.xml" ]; then
-        SERVER_KARMA=$(xmllint -xpath 'string(/serversettings/@KarmaEnabled)' "serversettings.xml"
+        SERVER_KARMA=$(xmllint -xpath 'string(/serversettings/@KarmaEnabled)' "serversettings.xml")
     else
         SERVER_KARMA="False"
     fi
@@ -199,7 +199,7 @@ fi
 ## if SERVER_KARMAPRESET is not set
 if [ -z ${SERVER_KARMAPRESET} ]; then
     if [ -f "serversettings.xml" ]; then
-        SERVER_KARMAPRESET=$(xmllint -xpath 'string(/serversettings/@KarmaPreset)' "serversettings.xml"
+        SERVER_KARMAPRESET=$(xmllint -xpath 'string(/serversettings/@KarmaPreset)' "serversettings.xml")
     else
         SERVER_KARMAPRESET="default"
     fi
