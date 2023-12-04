@@ -133,7 +133,7 @@ if [ -z ${SERVER_NAME} ] || [ "${SERVER_NAME}" == "" ]; then
     fi
     export SERVER_NAME
 fi
-if [ "${SERVER_NAME_PREFIX}" != "" ]; the
+if [ "${SERVER_NAME_PREFIX}" != "" ]; then
     if [[ $SERVER_NAME != *$SERVER_NAME_PREFIX* ]]; then
         SERVER_NAME="${SERVER_NAME_PREFIX} ${SERVER_NAME}"
     fi
