@@ -208,7 +208,7 @@ fi
 ## if SERVER_LANGUAGE is not set
 if [ -z ${SERVER_LANGUAGE} ]; then
     if [ -f "serversettings.xml" ]; then
-        SERVER_LANGUAGE=$(xmllint -xpath 'string(/serversettings/@Language)' "serversettings.xml"
+        SERVER_LANGUAGE=$(xmllint -xpath 'string(/serversettings/@Language)' "serversettings.xml")
     else
         SERVER_LANGUAGE="English"
     fi
