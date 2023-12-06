@@ -146,7 +146,7 @@ if [ -z ${SERVER_PUBLIC} ]; then
     export SERVER_PUBLIC
 fi
 ## if CAN_BE_PASSWORDED is not set or if its 1 (true)
-if [ -z ${CAN_BE_PASSWORDED} ] || [ "${CAN_BE_PASSWORDED}" == "1"]; then
+if [ -z ${CAN_BE_PASSWORDED} ] || [ ${CAN_BE_PASSWORDED} == 1]; then
     ## if SERVER_PASSWORD is not set
     if [ -z ${SERVER_PASSWORD} ]; then
         if [ -f "serversettings.xml" ]; then
