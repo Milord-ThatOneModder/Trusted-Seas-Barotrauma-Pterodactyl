@@ -125,7 +125,7 @@ touch custom_script.sh
 chmod +x custom_script.sh
 
 ## if SERVER_NAME is not set or to "" set it from the file
-if [ -z ${SERVER_NAME} ]; then
+if [ -z "$SERVER_NAME" ]; then
     if [ -f "serversettings.xml" ]; then
         SERVER_NAME=$(xmllint -xpath 'string(/serversettings/@name)' "serversettings.xml")
     else
