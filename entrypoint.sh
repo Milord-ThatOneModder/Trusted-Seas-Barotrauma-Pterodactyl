@@ -139,7 +139,7 @@ if [ "${SERVER_NAME_PREFIX}" != "" ]; then
     fi
 fi
 ## if SERVER_PUBLIC is not set
-if [ -z ${SERVER_PUBLIC} ]; then
+if [ -z "$SERVER_PUBLIC" ]; then
     if [ -f "serversettings.xml" ]; then
         SERVER_PUBLIC=$(xmllint -xpath 'string(/serversettings/@IsPublic)' "serversettings.xml")
     fi
