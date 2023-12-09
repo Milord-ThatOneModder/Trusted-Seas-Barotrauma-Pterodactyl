@@ -116,7 +116,11 @@ unzip -qo ModManager.zip
 modmanager_run_script="#!/bin/bash
 if [ -f \"config_player.xml\" ]; then
     echo \"RUNNING MOD MANAGER\"
-    python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\" --backup \"12\" \"Daedalic Entertainment GmbH/Barotrauma/Multiplayer\" -o \"LocalMods\"
+    if [ \"\${STEAM_COLLECTION}\" != \"\" ]; then
+        python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\" --backup \"12\" \"Daedalic Entertainment GmbH/Barotrauma/Multiplayer\" -o \"LocalMods\" -c \$STEAM_COLLECTION
+    else
+        python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\" --backup \"12\" \"Daedalic Entertainment GmbH/Barotrauma/Multiplayer\" -o \"LocalMods\"
+    fi
 fi"
 echo "$modmanager_run_script" > mod_manager.sh
 chmod +x mod_manager.sh
@@ -145,6 +149,12 @@ if [ -z "$SERVER_PUBLIC" ]; then
     fi
     export SERVER_PUBLIC
 fi
+if [ -z ${CAN_BE_PRIVATE} ]; then
+    if [[ $CAN_BE_PRIVATE == 0 ]]; then
+        SERVER_PUBLIC=0
+    fi
+fi
+
 ## if CAN_BE_PASSWORDED is not set or if its 1 (true)
 if [ -z ${CAN_BE_PASSWORDED} ] || [[ $CAN_BE_PASSWORDED == 1 ]]; then
     ## if SERVER_PASSWORD is not set
