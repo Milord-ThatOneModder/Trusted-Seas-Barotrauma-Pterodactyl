@@ -117,7 +117,7 @@ modmanager_run_script="#!/bin/bash
 if [ -f \"config_player.xml\" ]; then
     echo \"RUNNING MOD MANAGER\"
     if [ \"\${STEAM_COLLECTION}\" != \"\" ]; then
-        python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\" --backup \"12\" \"Daedalic Entertainment GmbH/Barotrauma/Multiplayer\" -o \"LocalMods\" -c \$STEAM_COLLECTION
+        python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\" --backup \"12\" \"Daedalic Entertainment GmbH/Barotrauma/Multiplayer\" -c \$STEAM_COLLECTION \"LocalMods\"
     else
         python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\" --backup \"12\" \"Daedalic Entertainment GmbH/Barotrauma/Multiplayer\" -o \"LocalMods\"
     fi
