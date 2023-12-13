@@ -1,1 +1,2 @@
-- make an auto closing after 5 minutes
+- make an auto closing after 5 minute
+- verbose output for maintence and debugging

@@ -1,6 +1,6 @@
 FROM        --platform=linux/amd64 ubuntu:22.04
 
-LABEL       author="Trusted Seas Community, Noble Milord and Evil Factory" maintainer="https://github.com/Milord-ThatOneModder"
+LABEL       author="Lighthouse Servers, Noble and Evil Factory" maintainer="https://github.com/Milord-ThatOneModder"
 
 LABEL       org.opencontainers.image.source="https://github.com/Milord-ThatOneModder/Trusted-Seas-Barotrauma-Pterodactyl"
 LABEL       org.opencontainers.image.licenses=LGPL

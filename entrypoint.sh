@@ -82,47 +82,18 @@ fi
 
 # Licenced thing by mathew end here
 
-rm luacsforbarotrauma_patch_linux_server.zip
-wget https://github.com/evilfactory/LuaCsForBarotrauma/releases/download/latest/luacsforbarotrauma_patch_linux_server.zip -O luacsforbarotrauma_patch_linux_server.zip
-unzip -o luacsforbarotrauma_patch_linux_server.zip
+echo "UPDATING LUA FOR BAROTRAUMA"
+wget -N  -q --show-progress https://github.com/evilfactory/LuaCsForBarotrauma/releases/download/latest/luacsforbarotrauma_patch_linux_server.zip -O luacsforbarotrauma_patch_linux_server.zip
+unzip -qo luacsforbarotrauma_patch_linux_server.zip
 
-pterodactylfix=" LuaUserData.RegisterType('System.Console')
-local Console = LuaUserData.CreateStatic('System.Console')
-Hook.Patch('System.Console', 'get_IsOutputRedirected', function(self, ptable)
-    ptable.PreventExecution = true
-        return true
-end)
-Hook.Patch('System.Console', 'get_IsInputRedirected', function(self, ptable)
-        ptable.PreventExecution = false
-        return true
-end)
-Hook.Add('think', 'ConsoleInput', function()
-    if Console.KeyAvailable then
-                Game.ExecuteCommand(Console.ReadLine())
-    end
-end)"
+# Pterodactyl fix upload
+wget -N -q --show-progress https://raw.githubusercontent.com/Milord-ThatOneModder/trusted-seas-barotrauma-pterodactyl/main/ModLoader.lua -O Lua/ModLoader.lua
 
-echo "$pterodactylfix" >> Lua/ModLoader.lua
-
-# Replace Startup Variables
-MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
-echo -e ":/home/container$ ${MODIFIED_STARTUP}"
-
-# ModManager setup
-echo \"UPDATING MOD MANAGER\"
-wget -N https://github.com/Milord-ThatOneModder/Barotrauma-ModManager/releases/latest/download/ModManager.zip
+# ModManager download and update
+echo "UPDATING MOD MANAGER"
+wget -N -q --show-progress https://github.com/Milord-ThatOneModder/Barotrauma-ModManager/releases/latest/download/ModManager.zip -O ModManager.zip
 unzip -qo ModManager.zip
-
-modmanager_run_script="#!/bin/bash
-if [ -f \"config_player.xml\" ]; then
-    echo \"RUNNING MOD MANAGER\"
-    if [ \"\${STEAM_COLLECTION}\" != \"\" ]; then
-        python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\" --backup \"12\" \"Daedalic Entertainment GmbH/Barotrauma/Multiplayer\" -c \$STEAM_COLLECTION \"LocalMods\"
-    else
-        python3 ModManager/ModManager.py -s \"steamcmd/steamcmd.sh\" -t \"ModManager\" --backup \"12\" \"Daedalic Entertainment GmbH/Barotrauma/Multiplayer\" -o \"LocalMods\"
-    fi
-fi"
-echo "$modmanager_run_script" > mod_manager.sh
+wget -N -q --show-progress https://raw.githubusercontent.com/Milord-ThatOneModder/trusted-seas-barotrauma-pterodactyl/main/mod_manager.sh -O mod_manager.sh
 chmod +x mod_manager.sh
 
 touch custom_script.sh
@@ -224,6 +195,11 @@ if [ -z ${SERVER_LANGUAGE} ]; then
     fi
     export SERVER_LANGUAGE
 fi
+
+
+# Replace Startup Variables
+MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
+# echo -e ":/home/container$ ${MODIFIED_STARTUP}"
 
 # Run the Server
 eval ${MODIFIED_STARTUP}
