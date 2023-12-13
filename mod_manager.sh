@@ -8,7 +8,7 @@ if [ -f "config_player.xml" ]; then
             python3 ModManager/ModManager.py -s "steamcmd/steamcmd.sh" -t "ModManager" --backup "12" "Daedalic Entertainment GmbH/Barotrauma/Multiplayer" -o "LocalMods"
         fi
     else
-        echo "MOD REMOVAL ENGAGED!!!!!"
+        echo -e "\033[0;31mMOD REMOVAL ENGAGED!!!!!\033[0m"
         python3 ModManager/ModManager.py -s "steamcmd/steamcmd.sh" -t "ModManager" --backup "12" "Daedalic Entertainment GmbH/Barotrauma/Multiplayer" -o "LocalMods" --removemods
     fi
 fi
