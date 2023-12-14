@@ -103,7 +103,7 @@ Hook.Add('think', 'ConsoleInput', function()
                 Game.ExecuteCommand(Console.ReadLine())
     end
 end)"
-echo "$pterodactylfix" >> Lua/ModLoader.lu
+echo "$pterodactylfix" >> Lua/ModLoader.lua
 
 # ModManager download and update
 echo "UPDATING MOD MANAGER"
