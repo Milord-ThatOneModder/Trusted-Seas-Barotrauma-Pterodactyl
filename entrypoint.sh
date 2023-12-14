@@ -87,7 +87,23 @@ wget -N  -q --show-progress https://github.com/evilfactory/LuaCsForBarotrauma/re
 unzip -qo luacsforbarotrauma_patch_linux_server.zip
 
 # Pterodactyl fix upload
-wget -N -q --show-progress https://raw.githubusercontent.com/Milord-ThatOneModder/trusted-seas-barotrauma-pterodactyl/main/ModLoader.lua -O Lua/ModLoader.lua
+# wget -N -q --show-progress https://raw.githubusercontent.com/Milord-ThatOneModder/trusted-seas-barotrauma-pterodactyl/main/ModLoader.lua -O Lua/ModLoader.lua
+pterodactylfix=" LuaUserData.RegisterType('System.Console')
+local Console = LuaUserData.CreateStatic('System.Console')
+Hook.Patch('System.Console', 'get_IsOutputRedirected', function(self, ptable)
+    ptable.PreventExecution = true
+        return true
+end)
+Hook.Patch('System.Console', 'get_IsInputRedirected', function(self, ptable)
+        ptable.PreventExecution = false
+        return true
+end)
+Hook.Add('think', 'ConsoleInput', function()
+    if Console.KeyAvailable then
+                Game.ExecuteCommand(Console.ReadLine())
+    end
+end)"
+echo "$pterodactylfix" >> Lua/ModLoader.lu
 
 # ModManager download and update
 echo "UPDATING MOD MANAGER"
