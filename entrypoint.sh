@@ -126,20 +126,22 @@ if [ -z "$SERVER_NAME" ]; then
 fi
 if [ "${SERVER_NAME_PREFIX}" != "" ]; then
     if [[ $SERVER_NAME != *$SERVER_NAME_PREFIX* ]]; then
-        SERVER_NAME="${SERVER_NAME_PREFIX} ${SERVER_NAME}"
+        SERVER_NAME="${SERVER_NAME_PREFIX} - ${SERVER_NAME}"
     fi
 fi
 ## if SERVER_PUBLIC is not set
-if [ -z "$SERVER_PUBLIC" ]; then
-    if [ -f "serversettings.xml" ]; then
-        SERVER_PUBLIC=$(xmllint -xpath 'string(/serversettings/@IsPublic)' "serversettings.xml")
+if [ -z ${CAN_BE_PRIVATE} ] || [[ $CAN_BE_PRIVATE == 1 ]]; then
+    if [ -z "$SERVER_PUBLIC" ]; then
+        if [ -f "serversettings.xml" ]; then
+            SERVER_PUBLIC=$(xmllint -xpath 'string(/serversettings/@IsPublic)' "serversettings.xml")
+        else
+            SERVER_PUBLIC="True"
+        fi
+        export SERVER_PUBLIC
     fi
+else
+    SERVER_PUBLIC="True"
     export SERVER_PUBLIC
-fi
-if [ -z ${CAN_BE_PRIVATE} ]; then
-    if [[ $CAN_BE_PRIVATE == 0 ]]; then
-        SERVER_PUBLIC=0
-    fi
 fi
 
 ## if CAN_BE_PASSWORDED is not set or if its 1 (true)
